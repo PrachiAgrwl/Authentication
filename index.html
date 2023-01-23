@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication</title>
+    <style>
+      body {
+        margin: 0px 120px 0px 120px;
+        margin-top: 20px;
+        font-family: sans-serif;
+      }
+      input {
+        width: 80%;
+        height: 35px;
+        border-color: lightgrey;
+        border-radius: 5px;
+      }
+      button {
+        width: 80px;
+        height: 40px;
+        color: white;
+        border-radius: 4px;
+        font-size: 15px;
+        border: none;
+      }
+      #login {
+        background-color: darkgreen;
+        border-color: darkgreen;
+      }
+      #reg {
+        background-color: rgb(39, 123, 250);
+        border-color: rgb(39, 123, 250);
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="color: rgb(39, 123, 250)">
+      Authentication with session storage
+    </h2>
+    <h2 style="color: red">Register</h2>
+    <form>
+      <label for="user">User Name:</label><br /><br />
+      <input
+        type="text"
+        id="user"
+        name="user"
+        placeholder="Enter Username"
+      /><br /><br />
+      <label for="pwd">Password:</label><br /><br />
+      <input
+        type="password"
+        id="pwd"
+        name="pwd"
+        placeholder="Enter email"
+      /><br /><br />
+    </form>
+    <button id="login">Login</button>
+    <button id="reg">Register</button>
+    <script>
+      var btn1 = document.getElementById("login");
+      var btn2 = document.getElementById("reg");
+
+      btn1.onclick = () => {
+        var uname = document.getElementById("user").value;
+        var pwdd = document.getElementById("pwd").value;
+        if (uname == "" && pwdd == "") {
+          alert("Enter Credentials");
+        } else if (pwdd == "") alert("Enter password");
+        else {
+          let data = JSON.parse(window.sessionStorage.getItem("Info"));
+          if (data == null) alert("Register Yourself First");
+          else{
+            if(data.uname===uname && data.pwdd===pwdd) window.location.href = "../Authentication/profile.html";
+            else{
+              alert("Invalid Username or password");
+              
+            }
+          } 
+        }
+      };
+      btn2.onclick = () =>
+        (window.location.href = "../Authentication/reg.html");
+    </script>
+  </body>
+</html>

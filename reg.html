@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication</title>
+    <style>
+      body {
+        margin: 0px 120px 0px 120px;
+        margin-top: 20px;
+        font-family: sans-serif;
+      }
+      /* p{
+            font-size: 25px;
+        } */
+      input {
+        width: 80%;
+        height: 35px;
+        border-color: lightgrey;
+        border-radius: 5px;
+      }
+      input:hover {
+        border-color: rgb(39, 123, 250);
+      }
+      button {
+        width: 80px;
+        height: 40px;
+        background-color: rgb(39, 123, 250);
+        color: white;
+        border-radius: 4px;
+        font-size: 15px;
+        /* border-color: rgb(39, 123, 250); */
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="color: rgb(39, 123, 250)">
+      Authentication with session storage
+    </h2>
+    <h2 style="color: red">Register</h2>
+    <form>
+      <label for="user">User Name:</label><br /><br />
+      <input
+        type="text"
+        id="user"
+        name="user"
+        placeholder="Enter Username"
+      /><br /><br />
+      <label for="email">Email Address:</label><br /><br />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+      /><br /><br />
+      <label for="pwd">Password:</label><br /><br />
+      <input type="password" id="pwd" name="pwd" placeholder="Enter Password" />
+    </form>
+
+    <br />
+    <button id="btn">Submit</button>
+    <script>
+      var btnn = document.getElementById('btn');
+      btnn.onclick = () => {
+        var uname = document.getElementById("user").value;
+        var pwdd = document.getElementById("pwd").value;
+        var email = document.getElementById("email").value;
+        if (uname == "" && pwdd == "" && email == "") {
+          alert("Add your Credentials");
+        } else if (uname == "" || pwdd == "" || email == "") {
+          alert("All fields are required");
+        } else {
+          let data = { uname, pwdd, email };
+          let s_data=JSON.stringify(data);
+          window.sessionStorage.setItem("Info", s_data);
+          uname="";pwdd="";email="";
+          alert("Account Created Successfully");
+          window.location.href="../Authentication/index.html";
+
+        }
+      };
+    </script>
+  </body>
+</html>
